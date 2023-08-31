@@ -4,11 +4,16 @@
 #include <string>
 #include <vector>
 
+#include <iostream>
+
 using namespace std;
 
+// think about negative numbers
 class StringInt {
     private:
         vector<char> number;
+
+        string add(const char a, const char b) const;
 
     public:
         StringInt(const string num);

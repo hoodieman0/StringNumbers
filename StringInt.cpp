@@ -10,3 +10,21 @@ StringInt(const string num) {
     }
 }
 
+string StringInt::
+add(char a, char b) const {
+    if (a < 48 || a > 57 || b < 48 || b > 57) throw "NaN"; // if it is not a number character
+
+    string result = "";
+
+    int c = (a - 48) + (b - 48);
+
+    if (c > 9) {
+        result += '1';
+        result += ((c - 10) + 48);
+    }
+    else {
+        result += (c + 48);
+    }
+
+    return result;
+}
