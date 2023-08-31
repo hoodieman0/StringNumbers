@@ -11,8 +11,8 @@ int UnitTest_DefaultConstruction(){
 
         vector<int> receivedValues = text.asInt();
         
-        if (receivedValues.size() > 1) throw "Values Exceed Expected Amount";
-        if (receivedValues[0] != 0) throw "Default Construction Does Not Yield 0";
+        if (receivedValues.size() != 1) throw "Values Do Not Meet Expected Amount";
+        else if (receivedValues[0] != 0) throw "Default Construction Does Not Yield 0";
         cout << "Default Constructor's value is: " << receivedValues[0] << endl;
     }
     catch (...) { return 1; }
