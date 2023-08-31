@@ -36,6 +36,12 @@ asInt() const {
     vector<int> result;
     int section = 0;
 
+    // handler edge case of 0
+    if (number.size() == 1 && number[0] == '0') {
+        result.push_back(0);
+        return result;
+    }
+
     for (int i = 0; i < number.size(); i++) {
         if (i % 4 == 0 && i != 0){
             result.push_back(section);
@@ -49,4 +55,19 @@ asInt() const {
     }
     
     return result;
+}
+
+StringInt StringInt::
+operator+(const StringInt other) const {
+    int digitPlace;
+    int carryOver;
+    StringInt result();
+
+    // choose the smallest sized number for addition
+    if (number.size() > other.number.size()) digitPlace = other.number.size();
+    else digitPlace = number.size();
+    
+    for (int i = 0; i < digitPlace; i++){
+        other.number[i];
+    }
 }

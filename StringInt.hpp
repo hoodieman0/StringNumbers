@@ -17,15 +17,15 @@ class StringInt {
         string add(const char a, const char b) const;
 
     public:
-        StringInt() : number{'0'} {}
+        StringInt() { number.push_back('0'); }
         StringInt(const string num);
         ~StringInt()=default;
 
         vector<int> asInt() const;
 
-        StringInt operator+(const StringInt add) const;
-        StringInt operator+(const int add) const;
-        StringInt operator+(const float add) const;
+        StringInt operator+(const StringInt other) const;
+        StringInt operator+(const int other) const;
+        StringInt operator+(const float other) const;
 
         StringInt operator-(const StringInt sub) const;
         StringInt operator-(const int sub) const;
@@ -58,6 +58,8 @@ class StringInt {
         bool operator>=(const StringInt compare) const;
         bool operator<(const StringInt compare) const;
         bool operator<=(const StringInt compare) const;
+        
+        char operator[](size_t idx) const;
 };
 
 #endif STRINT_HPP
