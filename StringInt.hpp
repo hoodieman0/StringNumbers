@@ -11,7 +11,7 @@ class StringInt {
         vector<char> number;
 
     public:
-        StringInt(const string number);
+        StringInt(const string num);
 
         vector<int> asInt();
 
