@@ -16,7 +16,9 @@ class StringInt {
         string add(const char a, const char b) const;
 
     public:
+        StringInt() : number{'0'} {}
         StringInt(const string num);
+        ~StringInt()=default;
 
         vector<int> asInt();
 
