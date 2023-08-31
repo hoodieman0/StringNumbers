@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <cmath>
 
 #include <iostream>
 
@@ -20,7 +21,7 @@ class StringInt {
         StringInt(const string num);
         ~StringInt()=default;
 
-        vector<int> asInt();
+        vector<int> asInt() const;
 
         StringInt operator+(const StringInt add) const;
         StringInt operator+(const int add) const;

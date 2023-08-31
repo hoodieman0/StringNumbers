@@ -28,3 +28,25 @@ add(char a, char b) const {
 
     return result;
 }
+
+// MAX_INT is 32767
+// only use the first four digits of the int to allow for 9,999 to be represented
+vector<int> StringInt::
+asInt() const {
+    vector<int> result;
+    int section = 0;
+
+    for (int i = 0; i < number.size(); i++) {
+        if (i % 4 == 0 && i != 0){
+            result.push_back(section);
+            section = (number[i] - 48);
+        }
+        else { section += (int(pow(10, i%4))) * (number[i] - 48); }
+    }
+
+    if (section) {
+        result.push_back(section);
+    }
+    
+    return result;
+}
