@@ -57,13 +57,25 @@ int UnitTest_Equivalence(){
     return 0;
 }
 
+int UnitTest_asString(){
+    try{
+        StringInt text1("1234567890");
+        string test = text1.asString();
+        cout << "\n'1234567890' ?= \'" << test << "\'\n" << endl;
+        
+        if (test != "1234567890") throw "unexpected return string from StringInt";
+
+    } catch (...) { return 1; }
+    return 0;
+}
+
 int UnitTest_SimpleAdd(){
     try{
         StringInt text1("2");
         StringInt text2("2");
         StringInt text3 = text1 + text2;
 
-        if (text3)
+        if (text3.asString() != "4" && text3.asInt()[0] != 4) throw "simple addition failed to add 2 + 2";
 
     } catch (...) { return 1; }
     return 0;
@@ -108,6 +120,12 @@ int UnitTest_RunAll(){
     cout << "Running Unit Test - Equivalence..." << endl;
     if (UnitTest_Equivalence()) { cout << "Unit Test - Equivalence -> Failed Test \u274c" << endl; failed++;}
     else { cout << "Unit Test - Equivalence -> Passed Test \u2713" << endl; passed++; }
+
+    cout << "------------------------------------------------------" << endl;
+
+    cout << "Running Unit Test - asString..." << endl;
+    if (UnitTest_asString()) { cout << "Unit Test - asString -> Failed Test \u274c" << endl; failed++;}
+    else { cout << "Unit Test - asString -> Passed Test \u2713" << endl; passed++; }
 
     cout << "------------------------------------------------------" << endl;
     cout << "Finished running all tests" << endl;

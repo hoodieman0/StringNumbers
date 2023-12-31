@@ -12,6 +12,7 @@ int UnitTest_RunAll();
 int UnitTest_DefaultConstruction();
 int UnitTest_CreateClass();
 int UnitTest_asInt();
+int UnitTest_asString();
 int UnitTest_Equivalnce();
 
 
