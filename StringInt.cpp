@@ -5,17 +5,16 @@
 StringInt::
 StringInt(const string num) {
     for (int i = num.size() - 1; i > -1; i--){
-        if (num[i] < 48 || num[i] > 57) throw "NaN"; // if it is not a number character
+        if (num[i] < 48 || num[i] > 57) throw "Not a Number"; // if it is not a number character
         number.push_back(num[i]); 
     }
 }
 
 string StringInt::
 add(char a, char b) const {
-    if (a < 48 || a > 57 || b < 48 || b > 57) throw "NaN"; // if it is not a number character
-
+    if (a < 48 || a > 57 || b < 48 || b > 57) throw "Not a Number"; // if it is not a number character
+   
     string result = "";
-
     int c = (a - 48) + (b - 48);
 
     if (c > 9) {
@@ -34,7 +33,8 @@ add(char a, char b) const {
 vector<int> StringInt::
 asInt() const {
     vector<int> result;
-    int section = 0;
+
+    if (number.size() == 0) return result;
 
     // handler edge case of 0
     if (number.size() == 1 && number[0] == '0') {
