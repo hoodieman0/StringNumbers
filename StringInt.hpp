@@ -62,4 +62,4 @@ class StringInt {
         char operator[](size_t idx) const;
 };
 
-#endif STRINT_HPP
+#endif 

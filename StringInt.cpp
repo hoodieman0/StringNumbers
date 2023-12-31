@@ -42,32 +42,85 @@ asInt() const {
         return result;
     }
 
-    for (int i = 0; i < number.size(); i++) {
+    vector<int> reveresed;
+    int section = 0;
+
+    for (unsigned int i = 0; i < number.size(); i++) {
         if (i % 4 == 0 && i != 0){
-            result.push_back(section);
+            reveresed.push_back(section);
             section = (number[i] - 48);
         }
         else { section += (int(pow(10, i%4))) * (number[i] - 48); }
     }
 
     if (section) {
-        result.push_back(section);
+        reveresed.push_back(section);
     }
+
+    for (int i = reveresed.size() - 1; i >= 0; i--)
+        result.push_back(reveresed[i]);
     
     return result;
 }
 
 StringInt StringInt::
 operator+(const StringInt other) const {
-    int digitPlace;
-    int carryOver;
-    StringInt result();
+    vector<char> numCopy = number;
+    vector<char> otherCopy = other.number;
+
+    unsigned int digitPlace;
+    int carryOver = 0;
+    string resultString = "";
+
+    string temp;
 
     // choose the smallest sized number for addition
-    if (number.size() > other.number.size()) digitPlace = other.number.size();
-    else digitPlace = number.size();
+    if (numCopy.size() > otherCopy.size()) digitPlace = otherCopy.size();
+    else digitPlace = numCopy.size();
     
-    for (int i = 0; i < digitPlace; i++){
-        other.number[i];
+    for (unsigned int i = 0; i < digitPlace; i++){
+        if (carryOver > 0){
+            temp = add(carryOver + 48, numCopy[i]);
+            if (temp.size() == 1){
+                numCopy[i] = temp[0];
+                carryOver = 0;
+            } 
+            else {
+                numCopy[i] = temp[1];
+                carryOver = temp[0] - 48;
+            }
+        }
+
+        temp = add(numCopy[i], otherCopy[i]);
+        if (temp.size() == 1) resultString.append(temp);
+        else {
+            resultString += temp[1];
+            carryOver += temp[0] - 48;
+        }
     }
+
+    if (carryOver > 0){
+        if (otherCopy.size() > digitPlace){
+            temp = add(carryOver + 48, otherCopy[otherCopy.size()]);
+            if (temp.size() > 1) throw "Error with final carry over";
+            resultString += temp[0];
+        }
+        else if (numCopy.size() > digitPlace){
+            temp = add(carryOver + 48, numCopy[numCopy.size()]);
+            if (temp.size() > 1) throw "Error with final carry over";
+            resultString += temp[0];
+        }
+    }
+
+    return StringInt(resultString);
+}
+
+bool StringInt::
+operator==(const StringInt compare) const {
+    if (number.size() != compare.number.size()) return false;
+    for (unsigned int i = 0; i < number.size(); i++) {
+        if (number[i] != compare.number[i]) return false;
+    }
+
+    return true;
 }
