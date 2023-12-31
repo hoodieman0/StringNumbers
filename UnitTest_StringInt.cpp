@@ -1,9 +1,4 @@
-#include <iostream>
-#include <iomanip>
-
-#include "StringInt.hpp"
-
-using namespace std;
+#include "UnitTest_StringInt.hpp"
 
 int UnitTest_DefaultConstruction(){
     try {
@@ -45,6 +40,46 @@ int UnitTest_asInt(){
     return 0;
 }
 
+int UnitTest_Equivalence(){
+    try {
+        StringInt text1("123456789");
+        StringInt text2("123456789");
+        StringInt text3("101");
+        StringInt text4("987654321");
+
+        if(!(text1 == text1)) throw "text1 (123456789) does not equal itself";
+        if(!(text1 == text2)) throw "text1 (123456789) does not equal text2 (123456789)";
+        if(text1 == text3) throw "text1 (123456789) equals text3 (101)";
+        if(text1 == text4) throw "text1 (123456789) equals text4 (987654321)";
+    }
+    catch (...) { return 1; }
+    return 0;
+}
+
+int UnitTest_SimpleAdd(){
+    try{
+        StringInt text1("2");
+        StringInt text2("2");
+        StringInt text3 = text1 + text2;
+
+        if (text3)
+
+    } catch (...) { return 1; }
+    return 0;
+}
+
+// int UnitTest_Addition(){
+//     try {
+//         StringInt text1("9999");
+//         StringInt text2("1");
+
+//         StringInt text3 = text1 + text2;
+//     }
+//     catch (...) { return 1; }
+
+//     return 0;
+// }
+
 int UnitTest_RunAll(){
     int passed = 0, failed = 0;
 
@@ -68,7 +103,15 @@ int UnitTest_RunAll(){
     else { cout << "Unit Test - asInt -> Passed Test \u2713" << endl; passed++; }
 
     cout << "------------------------------------------------------" << endl;
+
+    cout << "Running Unit Test - Equivalence..." << endl;
+    if (UnitTest_Equivalence()) { cout << "Unit Test - Equivalence -> Failed Test \u274c" << endl; failed++;}
+    else { cout << "Unit Test - Equivalence -> Passed Test \u2713" << endl; passed++; }
+
+    cout << "------------------------------------------------------" << endl;
     cout << "Finished running all tests" << endl;
     cout << "\u2713 Passed Tests: " << passed << endl;
     cout << "\u274c Failed Tests: " << failed << endl;
+
+    return 0;
 }
