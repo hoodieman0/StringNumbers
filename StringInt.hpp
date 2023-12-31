@@ -12,16 +12,17 @@ using namespace std;
 // think about negative numbers
 class StringInt {
     private:
-        vector<char> number;
+        string number;
 
         string add(const char a, const char b) const;
 
     public:
         StringInt() { number.push_back('0'); }
-        StringInt(const string num);
+        StringInt(const string num) : number(num) { }
         ~StringInt()=default;
 
         vector<int> asInt() const;
+        string asString() const { return number; }
 
         StringInt operator+(const StringInt other) const;
         StringInt operator+(const int other) const;

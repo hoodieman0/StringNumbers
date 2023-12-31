@@ -1,15 +1,5 @@
 #include "StringInt.hpp"
 
-// the number is represented in reverse order to reduce position calculations for arithmetic
-// ex: 1469 is represented as 9641
-StringInt::
-StringInt(const string num) {
-    for (int i = num.size() - 1; i > -1; i--){
-        if (num[i] < 48 || num[i] > 57) throw "Not a Number"; // if it is not a number character
-        number.push_back(num[i]); 
-    }
-}
-
 string StringInt::
 add(char a, char b) const {
     if (a < 48 || a > 57 || b < 48 || b > 57) throw "Not a Number"; // if it is not a number character
@@ -42,31 +32,39 @@ asInt() const {
         return result;
     }
 
-    vector<int> reveresed;
     int section = 0;
 
     for (unsigned int i = 0; i < number.size(); i++) {
         if (i % 4 == 0 && i != 0){
-            reveresed.push_back(section);
-            section = (number[i] - 48);
+            result.push_back(section);
+            section = (int(pow(10, 3 - (i%4)))) * (number[i] - 48);
         }
-        else { section += (int(pow(10, i%4))) * (number[i] - 48); }
+        else { section += (int(pow(10, 3 - (i%4)))) * (number[i] - 48); }
     }
 
-    if (section) {
-        reveresed.push_back(section);
-    }
-
-    for (int i = reveresed.size() - 1; i >= 0; i--)
-        result.push_back(reveresed[i]);
     
+
+    if (section){ 
+        int size1 = number.size(); // 10
+        int size2 = (result.size() + 1) * 4; // 12
+        cout << size1 << endl;
+        cout << size2 << endl;
+
+        while (size1 < size2) { section /= 10; size2--; }
+        cout << section << endl;
+        
+        result.push_back(section);
+    }
+
     return result;
 }
 
+
+
 StringInt StringInt::
 operator+(const StringInt other) const {
-    vector<char> numCopy = number;
-    vector<char> otherCopy = other.number;
+    string numCopy = number;
+    string otherCopy = other.number;
 
     unsigned int digitPlace;
     int carryOver = 0;

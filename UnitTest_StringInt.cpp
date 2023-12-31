@@ -27,7 +27,7 @@ int UnitTest_CreateClass(){
 
 int UnitTest_asInt(){
     try {
-        int parts[3] = {12, 3456, 7890};
+        int parts[3] = {1234, 5678, 90};
         StringInt text("1234567890");
         vector<int> receivedValues = text.asInt();
         if (receivedValues.size() != 3) throw "wrong amount of vector return values";
