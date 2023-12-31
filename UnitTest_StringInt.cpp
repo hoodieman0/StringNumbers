@@ -27,10 +27,10 @@ int UnitTest_CreateClass(){
 
 int UnitTest_asInt(){
     try {
-        int parts[3] = {1234, 5678, 90};
+        int parts[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
         StringInt text("1234567890");
         vector<int> receivedValues = text.asInt();
-        if (receivedValues.size() != 3) throw "wrong amount of vector return values";
+        if (receivedValues.size() != 10) throw "wrong amount of vector return values";
         for (unsigned int i = 0; i < receivedValues.size(); i++){
             cout << i+1 << ") Expected: " << parts[i] << setw(20) << "Received: " << receivedValues[i] << endl;
             if (receivedValues[i] != parts[i]) throw "Non-matching values";
