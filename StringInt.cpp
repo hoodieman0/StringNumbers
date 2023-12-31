@@ -1,5 +1,12 @@
 #include "StringInt.hpp"
 
+StringInt::
+StringInt(const string num) : number(num) { 
+    for (char c : number ) {
+        if (c < 48 || c > 57) throw "Not a Number";
+    }
+}
+
 string StringInt::
 add(char a, char b) const {
     if (a < 48 || a > 57 || b < 48 || b > 57) throw "Not a Number"; // if it is not a number character

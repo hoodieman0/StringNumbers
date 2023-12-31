@@ -18,7 +18,7 @@ class StringInt {
 
     public:
         StringInt() { number.push_back('0'); }
-        StringInt(const string num) : number(num) { }
+        StringInt(const string num);
         ~StringInt()=default;
 
         vector<int> asInt() const;
