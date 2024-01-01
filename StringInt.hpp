@@ -21,7 +21,7 @@ class StringInt {
         ~StringInt()=default;
 
         vector<int> asInt() const;
-        string asString() const { return number; }
+        string asString() const { return isNegative ? "-" + number : number; }
 
         StringInt operator+(const StringInt other) const;
         StringInt operator+(const int other) const;
