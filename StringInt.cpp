@@ -43,77 +43,59 @@ StringInt StringInt::
 operator+(const StringInt other) const {
     vector<int> numCopy = this->asInt();
     vector<int> otherCopy = other.asInt();
-    unsigned int digitPlace;
     int carryOver = 0;
-    int temp;
-    string resultString = "";
+
     string reversed = "";
 
-    if (numCopy.size() > otherCopy.size()) digitPlace = otherCopy.size();
-    else digitPlace = numCopy.size();
-
-    for (int i = 0; i < digitPlace; i++){
+    unsigned int i = 0;
+    int temp;
+    while (true){
         temp = numCopy[numCopy.size() - 1 - i] + otherCopy[otherCopy.size() - 1 - i] + carryOver;
         carryOver = 0;
+
         if (temp > 9){
             carryOver = 1;
             temp = temp % 10;
         }
         reversed += temp + 48;
+        i++;
+
+        if (i == numCopy.size()){
+            while (i < otherCopy.size()){
+                temp = otherCopy[i++] + carryOver;
+                carryOver = 0;
+                if (temp > 9){
+                    carryOver = 1;
+                    temp = temp % 10;
+                }
+                reversed += temp + 48;
+            }
+
+            if (carryOver) reversed += carryOver + 48;
+
+            break;
+        }
+        else if (i == otherCopy.size()){
+            while (i < numCopy.size()){
+                temp = numCopy[i++] + carryOver;
+                carryOver = 0;
+                if (temp > 9){
+                    carryOver = 1;
+                    temp = temp % 10;
+                }
+                reversed += temp + 48;
+            }
+
+            if (carryOver) reversed += carryOver + 48;
+
+            break;
+        }
     }
 
+    string resultString = "";
+    for (int i = reversed.size() - 1; i >= 0; i--) resultString.push_back(reversed[i]);
 
-
-    for ()
-
-    // string numCopy = number;
-    // string otherCopy = other.number;
-
-    // unsigned int digitPlace;
-    // int carryOver = 0;
-    // string resultString = "";
-
-    // string temp;
-
-    // // choose the smallest sized number for addition
-    // if (numCopy.size() > otherCopy.size()) digitPlace = otherCopy.size();
-    // else digitPlace = numCopy.size();
-    
-    // for (unsigned int i = 0; i < digitPlace; i++){
-    //     if (carryOver > 0){
-    //         temp = add(carryOver + 48, numCopy[i]);
-    //         if (temp.size() == 1){
-    //             numCopy[i] = temp[0];
-    //             carryOver = 0;
-    //         } 
-    //         else {
-    //             numCopy[i] = temp[1];
-    //             carryOver = temp[0] - 48;
-    //         }
-    //     }
-
-    //     temp = add(numCopy[i], otherCopy[i]);
-    //     if (temp.size() == 1) resultString.append(temp);
-    //     else {
-    //         resultString += temp[1];
-    //         carryOver += temp[0] - 48;
-    //     }
-    // }
-
-    // if (carryOver > 0){
-    //     if (otherCopy.size() > digitPlace){
-    //         temp = add(carryOver + 48, otherCopy[otherCopy.size()]);
-    //         if (temp.size() > 1) throw "Error with final carry over";
-    //         resultString += temp[0];
-    //     }
-    //     else if (numCopy.size() > digitPlace){
-    //         temp = add(carryOver + 48, numCopy[numCopy.size()]);
-    //         if (temp.size() > 1) throw "Error with final carry over";
-    //         resultString += temp[0];
-    //     }
-    // }
-
-    // return StringInt(resultString);
+    return StringInt(resultString);
 }
 
 bool StringInt::

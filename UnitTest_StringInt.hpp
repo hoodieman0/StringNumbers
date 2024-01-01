@@ -14,6 +14,9 @@ int UnitTest_CreateClass();
 int UnitTest_asInt();
 int UnitTest_asString();
 int UnitTest_Equivalnce();
+int UnitTest_SimpleAdd();
+int UnitTest_CarryOverAdd();
+
 
 
 #endif
