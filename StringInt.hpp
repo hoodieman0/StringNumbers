@@ -13,6 +13,7 @@ using namespace std;
 class StringInt {
     private:
         string number;
+        bool isNegative;
 
     public:
         StringInt() { number.push_back('0'); }

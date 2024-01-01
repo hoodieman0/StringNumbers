@@ -1,9 +1,19 @@
 #include "StringInt.hpp"
 
 StringInt::
-StringInt(const string num) : number(num) { 
-    for (char c : number ) {
+StringInt(const string num) {
+    char c;
+    int i = 0;
+    if (num[0] == '-'){
+        isNegative = true;
+        i++;
+    }
+    else isNegative = false;
+    
+    for (i; i < num.size(); i++ ) {
+        c = num[i];
         if (c < 48 || c > 57) throw "Not a Number";
+        number += c;
     }
 }
 
