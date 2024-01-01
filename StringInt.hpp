@@ -62,4 +62,8 @@ class StringInt {
         char operator[](size_t idx) const;
 };
 
+inline ostream& operator<<(ostream& out, const StringInt& num) {
+    return out << num.asString();
+}
+
 #endif 
