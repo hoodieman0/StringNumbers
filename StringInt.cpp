@@ -7,25 +7,6 @@ StringInt(const string num) : number(num) {
     }
 }
 
-string StringInt::
-add(char a, char b) const {
-    if (a < 48 || a > 57 || b < 48 || b > 57) throw "Not a Number"; // if it is not a number character
-   
-    string result = "";
-    int c = (a - 48) + (b - 48);
-
-    if (c > 9) {
-        result += '1';
-        result += ((c - 10) + 48);
-    }
-    else {
-        result += (c + 48);
-    }
-
-    return result;
-}
-
-
 // MAX_INT is 32767
 vector<int> StringInt::
 asInt() const {
@@ -36,8 +17,6 @@ asInt() const {
 
     return result;
 }
-
-
 
 StringInt StringInt::
 operator+(const StringInt other) const {

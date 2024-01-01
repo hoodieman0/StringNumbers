@@ -14,8 +14,6 @@ class StringInt {
     private:
         string number;
 
-        string add(const char a, const char b) const;
-
     public:
         StringInt() { number.push_back('0'); }
         StringInt(const string num);
