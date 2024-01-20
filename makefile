@@ -1,5 +1,5 @@
 CC=c++
-CFLAGS=-std=c++23
+CFLAGS=-std=c++23 -Wall -Werror
 binaries = StringInt.o UnitTest_StringInt.o main.o
 binariesFolder = ./binaries
 
