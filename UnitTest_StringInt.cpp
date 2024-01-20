@@ -1,6 +1,6 @@
 #include "UnitTest_StringInt.hpp"
 
-bool compareResult(const StringInt result, const string expected){
+bool isEqual(const StringInt result, const string expected){
     const vector<int> resultInt = result.asInt();
     const string resultStr = result.asString();
 
