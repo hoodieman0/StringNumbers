@@ -17,6 +17,7 @@ int UnitTest_Equivalnce();
 int UnitTest_SimpleAdd();
 int UnitTest_CarryOverAdd();
 
+int UnitTest_GreaterThan();
 
 
 #endif

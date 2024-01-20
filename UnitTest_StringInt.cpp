@@ -143,6 +143,26 @@ int UnitTest_CarryOverAdd(){
     return 0;
 }
 
+int UnitTest_GreaterThan(){
+    try {
+        StringInt text1("100");
+        StringInt text2("10");
+
+        if ( !(text1 > text2) ) throw "100 > 10 gives false";
+        if (text2 > text1) throw "10 > 100 gives true";
+        if (text1 > text1) throw "100 > 100 gives true";
+
+        StringInt text3("101");
+        if (!(text3 > text1)) throw "101 > 100 gives false";
+
+
+    } catch(const char* a) {
+        cout << a << endl; return 1;
+    } catch (...) { return 1; }
+    
+    return 0;
+}
+
 int UnitTest_RunAll(){
     int passed = 0, failed = 0;
 
@@ -188,6 +208,13 @@ int UnitTest_RunAll(){
     cout << "Running Unit Test - CarryOverAdd..." << endl;
     if (UnitTest_CarryOverAdd()) { cout << "Unit Test - CarryOverAdd -> Failed Test \u274c" << endl; failed++;}
     else { cout << "Unit Test - CarryOverAdd -> Passed Test \u2713" << endl; passed++; }
+
+    cout << "------------------------------------------------------" << endl;
+    cout << "------------------------------------------------------" << endl;
+
+    cout << "Running Unit Test - GreaterThan..." << endl;
+    if (UnitTest_GreaterThan()) { cout << "Unit Test - GreaterThan -> Failed Test \u274c" << endl; failed++;}
+    else { cout << "Unit Test - GreaterThan -> Passed Test \u2713" << endl; passed++; }
 
     cout << "------------------------------------------------------" << endl;
     cout << "Finished running all tests" << endl;
