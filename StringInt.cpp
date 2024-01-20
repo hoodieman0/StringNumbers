@@ -9,7 +9,10 @@ StringInt(const string num) {
         i++;
     }
     else isNegative = false;
-    
+
+    c = num[i];
+    while (c == '0' && i+1 < num.size()) i++; // do not add leading 0s
+
     for (i; i < num.size(); i++ ) {
         c = num[i];
         if (c < 48 || c > 57) throw "Not a Number";
@@ -18,6 +21,7 @@ StringInt(const string num) {
 }
 
 // MAX_INT is 32767
+// 157 appears as <1, 5, 7>
 vector<int> StringInt::
 asInt() const {
     vector<int> result;
@@ -97,6 +101,7 @@ operator==(const StringInt compare) const {
     return true;
 }
 
+// this > compare
 // does not work with negative numbers
 bool StringInt::
 operator>(const StringInt compare) const{
@@ -111,6 +116,8 @@ operator>(const StringInt compare) const{
     return false; // left and right are the same number
 }
 
+// this < compare
+// does not work with negative numbers
 bool StringInt::
 operator<(const StringInt compare) const{
     if (number.size() < compare.number.size()) return true; // is left smaller than right?

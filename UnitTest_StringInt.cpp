@@ -32,9 +32,12 @@ int UnitTest_DefaultConstruction(){
 
 int UnitTest_CreateClass(){
     try {
-        StringInt text("1234567890");
-    }
-    catch (...) { return 1; }
+        StringInt text1("1234567890");
+        StringInt text2("00001");
+        if (text2.asString() != "1") throw "Constructor did not remove leading 0s";
+    } catch(const char* a) {
+        cout << a << endl; return 1;
+    } catch (...) { return 1; }
 
     return 0;
 }
