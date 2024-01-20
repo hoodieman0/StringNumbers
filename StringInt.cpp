@@ -103,9 +103,22 @@ operator>(const StringInt compare) const{
     if (number.size() < compare.number.size()) return false; // is left smaller than right?
     else if (number.size() > compare.number.size()) return true; // is left greater than right?
 
-    // if they are the same number...
+    // if they are the same size...
     for (unsigned int i = 0; i < number.size(); i++) {
         if (number[i] > compare.number[i]) return true; // is the digit on the left greater than the right?
+    }
+
+    return false; // left and right are the same number
+}
+
+bool StringInt::
+operator<(const StringInt compare) const{
+    if (number.size() < compare.number.size()) return true; // is left smaller than right?
+    else if (number.size() > compare.number.size()) return false; // is left greater than right?
+
+    // if they are the same size...
+    for (unsigned int i = 0; i < number.size(); i++) {
+        if (number[i] < compare.number[i]) return true; // is the digit on the left greater than the right?
     }
 
     return false; // left and right are the same number

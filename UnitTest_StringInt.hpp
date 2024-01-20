@@ -18,6 +18,7 @@ int UnitTest_SimpleAdd();
 int UnitTest_CarryOverAdd();
 
 int UnitTest_GreaterThan();
+int UnitTest_LessThan();
 
 
 #endif
