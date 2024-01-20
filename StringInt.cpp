@@ -3,7 +3,7 @@
 StringInt::
 StringInt(const string num) {
     char c;
-    int i = 0;
+    unsigned int i = 0;
     if (num[0] == '-'){
         isNegative = true;
         i++;
@@ -13,7 +13,7 @@ StringInt(const string num) {
     c = num[i];
     while (c == '0' && i+1 < num.size()) i++; // do not add leading 0s
 
-    for (i; i < num.size(); i++ ) {
+    for (; i < num.size(); i++ ) {
         c = num[i];
         if (c < 48 || c > 57) throw "Not a Number";
         number += c;
