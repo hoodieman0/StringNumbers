@@ -1,5 +1,20 @@
 #include "UnitTest_StringInt.hpp"
 
+bool compareResult(const StringInt result, const string expected){
+    const vector<int> resultInt = result.asInt();
+    const string resultStr = result.asString();
+
+    if (resultInt.size() != expected.size()) return false;
+
+    for (unsigned int i = 0; i < resultInt.size(); i++){
+        if (resultInt[i] != expected[i] - 48) return false;
+    }
+
+    if (resultStr != expected) return false;
+
+    return true;
+}
+
 int UnitTest_DefaultConstruction(){
     try {
         StringInt text;

@@ -20,5 +20,6 @@ int UnitTest_CarryOverAdd();
 int UnitTest_GreaterThan();
 int UnitTest_LessThan();
 
+bool compareResult(const StringInt result, const string expected);
 
 #endif
