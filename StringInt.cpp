@@ -91,6 +91,57 @@ operator+(const StringInt other) const {
     return StringInt(resultString);
 }
 
+// this - sub = result
+StringInt StringInt::
+operator-(const StringInt sub) const {
+    if (*this < sub) throw "Negative numbers not implemented";
+
+    vector<int> numCopy = this->asInt();
+    vector<int> otherCopy = sub.asInt();
+
+    string reversed = "";
+    int num1, num2;
+
+    unsigned int i = 0;
+    int temp;
+    while (true){
+        num1 = numCopy[numCopy.size() - 1 - i];
+        num2 = otherCopy[otherCopy.size() - 1 - i];
+
+        if (num2 > num1) { 
+            num1 += 10;
+
+            unsigned int j = i + 1;
+            while (numCopy[numCopy.size() - 1 - j] == 0) {
+                numCopy[numCopy.size() - 1 - j] = 9;
+                j++;
+                if (j == numCopy.size()) throw "Cannot find number to carry over";
+            }
+            numCopy[numCopy.size() - 1 - j] = numCopy[numCopy.size() - 1 - j] - 1; 
+        }
+        temp = num1 - num2;
+
+        reversed += temp + 48;
+        i++;
+
+        // 2 - 10 TODO Make a sub function to flip inputs and make result negative
+       
+        if (i == otherCopy.size()){ // reached otherCopy's left-most digit
+            while (i < numCopy.size()) reversed += numCopy[numCopy.size() - 1 - i++] + 48;// ad the remaining top digits to result
+            while (reversed.back() == '0' && reversed.size() > 1) reversed.pop_back(); // remove leading zeros
+            break;
+        }
+        else if (i == numCopy.size()){
+            throw "negative numbers not implemented";
+            break;
+        } 
+    }
+
+    string resultString = reversed;
+    reverse(resultString.begin(), resultString.end()); 
+    return StringInt(resultString);
+}
+
 bool StringInt::
 operator==(const StringInt compare) const {
     if (number.size() != compare.number.size()) return false;

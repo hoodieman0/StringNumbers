@@ -16,10 +16,12 @@ int UnitTest_asString();
 int UnitTest_Equivalnce();
 int UnitTest_SimpleAdd();
 int UnitTest_CarryOverAdd();
-
+int UnitTest_SimpleSub();
+int UnitTest_PositiveSub();
 int UnitTest_GreaterThan();
 int UnitTest_LessThan();
 
 bool isEqual(const StringInt result, const string expected);
+
 
 #endif

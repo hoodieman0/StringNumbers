@@ -161,6 +161,49 @@ int UnitTest_CarryOverAdd(){
     return 0;
 }
 
+int UnitTest_SimpleSub(){
+    try{
+        StringInt text1("2");
+        StringInt text2("2");
+        StringInt text3 = text1 - text2;
+
+        if (text3.asString() != "0" || text3.asInt()[0] != 0) throw "StringInt failed to subtract 2 - 2";
+
+    } catch(const char* a) {
+        cout << a << endl; return 1;
+    } catch (...) { return 1; }
+    return 0;
+}
+
+int UnitTest_PositiveSub(){
+    try{
+        StringInt text1("1000");
+        StringInt text2("1");
+        StringInt text3 = text1 - text2;
+        if (!isEqual(text3, "999")) throw "StringInt failed to subtract 1000 - 1";
+
+
+        StringInt text4("757");
+        StringInt text5("757");
+        StringInt text6 = text4 - text5;
+        if (!isEqual(text6, "0")) throw "StringInt failed to subtract 0757 - 757";
+
+        StringInt text7("157843");
+        StringInt text8("23981");
+        StringInt text9 = text7 - text8;
+        if (!isEqual(text9, "133862")) throw "StringInt failed to subtract 157843 - 23981";
+        
+        StringInt text10("9998");
+        StringInt text11("1119");
+        StringInt text12 = text10 - text11;
+        if (!isEqual(text12, "8879")) throw "StringInt failed to subtract 9998 - 1119";
+
+    } catch(const char* a) {
+        cout << a << endl; return 1;
+    } catch (...) { return 1; }
+    return 0;
+}
+
 int UnitTest_GreaterThan(){
     try {
         StringInt text1("100");
@@ -173,6 +216,10 @@ int UnitTest_GreaterThan(){
         StringInt text3("101");
         if (!(text3 > text1)) throw "101 > 100 gives false";
 
+        StringInt text4("9998");
+        StringInt text5("1119");
+        if (!(text4 > text5)) throw "9998 > 1119 gives false";
+        if (text5 > text4) throw "1119 > 9998 gives true";
 
     } catch(const char* a) {
         cout << a << endl; return 1;
@@ -192,6 +239,11 @@ int UnitTest_LessThan(){
 
         StringInt text3("101");
         if (!(text1 < text3)) throw "100 < 101 gives false";
+
+        StringInt text4("9998");
+        StringInt text5("1119");
+        if (!(text5 < text4)) throw "1119 < 9998 gives false";
+        if (text4 < text5) throw "9998 < 1119 gives true";
 
     } catch(const char* a) {
         cout << a << endl; return 1;
@@ -247,6 +299,17 @@ int UnitTest_RunAll(){
     else { cout << "Unit Test - CarryOverAdd -> Passed Test \u2713" << endl; passed++; }
 
     cout << "------------------------------------------------------" << endl;
+
+    cout << "Running Unit Test - SimpleSub..." << endl;
+    if (UnitTest_SimpleSub()) { cout << "Unit Test - SimpleSub -> Failed Test \u274c" << endl; failed++;}
+    else { cout << "Unit Test - SimpleSub -> Passed Test \u2713" << endl; passed++; }
+
+    cout << "------------------------------------------------------" << endl;
+
+    cout << "Running Unit Test - PositiveSub..." << endl;
+    if (UnitTest_PositiveSub()) { cout << "Unit Test - PositiveSub -> Failed Test \u274c" << endl; failed++;}
+    else { cout << "Unit Test - PositiveSub -> Passed Test \u2713" << endl; passed++; }
+
     cout << "------------------------------------------------------" << endl;
 
     cout << "Running Unit Test - GreaterThan..." << endl;
