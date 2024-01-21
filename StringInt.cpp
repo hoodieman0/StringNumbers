@@ -111,6 +111,7 @@ operator>(const StringInt compare) const{
     // if they are the same size...
     for (unsigned int i = 0; i < number.size(); i++) {
         if (number[i] > compare.number[i]) return true; // is the digit on the left greater than the right?
+        else if (number[i] < compare.number[i]) return false; // if the digit on the left is less than the right the number is less
     }
 
     return false; // left and right are the same number
@@ -125,7 +126,8 @@ operator<(const StringInt compare) const{
 
     // if they are the same size...
     for (unsigned int i = 0; i < number.size(); i++) {
-        if (number[i] < compare.number[i]) return true; // is the digit on the left greater than the right?
+        if (number[i] < compare.number[i]) return true; // is the digit on the left less than the right?
+        else if (number[i] > compare.number[i]) return false; // if the digit on the left is greater than the right the number is greater
     }
 
     return false; // left and right are the same number
