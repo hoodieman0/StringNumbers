@@ -24,8 +24,9 @@ int UnitTest_DefaultConstruction(){
         if (receivedValues.size() != 1) throw "Values Do Not Meet Expected Amount";
         else if (receivedValues[0] != 0) throw "Default Construction Does Not Yield 0";
         cout << "Default Constructor's value is: " << receivedValues[0] << endl;
-    }
-    catch (...) { return 1; }
+    } catch(const char* a) {
+        cout << a << endl; return 1;
+    } catch (...) { return 1; }
 
     return 0;
 }
@@ -52,8 +53,9 @@ int UnitTest_asInt(){
             cout << i+1 << ") Expected: " << parts[i] << setw(20) << "Received: " << receivedValues[i] << endl;
             if (receivedValues[i] != parts[i]) throw "Non-matching values";
         }
-    }
-    catch (...) { return 1; }
+    } catch(const char* a) {
+        cout << a << endl; return 1;
+    } catch (...) { return 1; }
 
     return 0;
 }
@@ -69,8 +71,9 @@ int UnitTest_Equivalence(){
         if(!(text1 == text2)) throw "text1 (123456789) does not equal text2 (123456789)";
         if(text1 == text3) throw "text1 (123456789) equals text3 (101)";
         if(text1 == text4) throw "text1 (123456789) equals text4 (987654321)";
-    }
-    catch (...) { return 1; }
+    } catch(const char* a) {
+        cout << a << endl; return 1;
+    } catch (...) { return 1; }
     return 0;
 }
 
@@ -82,6 +85,8 @@ int UnitTest_asString(){
         
         if (test != "1234567890") throw "unexpected return string from StringInt";
 
+    } catch(const char* a) {
+        cout << a << endl; return 1;
     } catch (...) { return 1; }
     return 0;
 }
@@ -93,10 +98,10 @@ int UnitTest_SimpleAdd(){
 
         StringInt text3 = text1 + text2;
 
-        if (text3.asString() != "4" || text3.asInt()[0] != 4) throw "simple addition failed to add 2 + 2";
+        if (!isEqual(text3, "4")) throw "simple addition failed to add 2 + 2";
         
         StringInt text4 = text3 + text1;
-        if (text4.asString() != "6" || text4.asInt()[0] != 6) throw "simple addition failed to add 4 + 2";
+        if (!isEqual(text4, "6")) throw "simple addition failed to add 4 + 2";
     } catch(const char* a) {
         cout << a << endl; return 1;
     } catch (...) { return 1; }
@@ -109,51 +114,21 @@ int UnitTest_CarryOverAdd(){
         StringInt text2("5");
         StringInt text3 = text1 + text2;
 
-        if (text3.asString() != "10" || text3.asInt()[0] != 1 || text3.asInt()[1] != 0) 
-            throw "carry over failed to add 5 + 5";
+        if (!isEqual(text3, "10")) throw "carry over failed to add 5 + 5";
         
         StringInt text4("999999"); // 999,999
         StringInt text5("1");
         StringInt text6 = text4 + text5;
-        
-        int expected1[7] = {1, 0, 0, 0, 0, 0, 0};
-        vector<int> result1 = text6.asInt();
-
-        if (result1.size() != 7) throw "carry over failed to add 999,999 + 1";
-        for (unsigned int i = 0; i < result1.size(); i++ ){
-            if (result1[i] != expected1[i]) throw "carry over failed to add 999,999 + 1";
-        }
-
-        if (text6.asString() != "1000000") 
-            throw "carry over failed to add 999,999 + 1";
-
+        if (!isEqual(text6, "1000000")) throw "carry over failed to add 999,999 + 1";
 
         text6 = text5 + text4;
-        result1 = text6.asInt();
-
-        if (result1.size() != 7) throw "carry over failed to add 999,999 + 1";
-        for (unsigned int i = 0; i < result1.size(); i++ ){
-            if (result1[i] != expected1[i]) throw "carry over failed to add 999,999 + 1";
-        }
-
-        if (text6.asString() != "1000000") 
-            throw "carry over failed to add 999,999 + 1";
+        if (!isEqual(text6, "1000000")) throw "carry over failed to add 1 + 999,999";
 
         StringInt text7("999999"); // 999,999
         StringInt text8("999999"); // 999,999
         StringInt text9 = text7 + text8;
 
-        int expected2[7] = {1, 9, 9, 9, 9, 9, 8};
-        vector<int> result2 = text9.asInt();
-
-        if (result2.size() != 7) throw "carry over failed to add 999,999 + 999,999";
-        for (unsigned int i = 0; i < result2.size(); i++ ){
-            if (result2[i] != expected2[i]) throw "carry over failed to add 999,999 + 999,999";
-        }
-
-        if (text9.asString() != "1999998") 
-            throw "carry over failed to add 999,999 + 999,999";
-
+        if (!isEqual(text9, "1999998")) throw "carry over failed to add 999,999 + 999,999";
         
     } catch(const char* a) {
         cout << a << endl; return 1;
@@ -167,7 +142,7 @@ int UnitTest_SimpleSub(){
         StringInt text2("2");
         StringInt text3 = text1 - text2;
 
-        if (text3.asString() != "0" || text3.asInt()[0] != 0) throw "StringInt failed to subtract 2 - 2";
+        if (!isEqual(text3, "0")) throw "StringInt failed to subtract 2 - 2";
 
     } catch(const char* a) {
         cout << a << endl; return 1;
