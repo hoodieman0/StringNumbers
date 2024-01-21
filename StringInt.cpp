@@ -85,8 +85,8 @@ operator+(const StringInt other) const {
         }
     }
 
-    string resultString = "";
-    for (int i = reversed.size() - 1; i >= 0; i--) resultString.push_back(reversed[i]);
+    string resultString = reversed;
+    reverse(resultString.begin(), resultString.end()); 
 
     return StringInt(resultString);
 }
