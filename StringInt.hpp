@@ -9,7 +9,6 @@
 
 using namespace std;
 
-// think about negative numbers
 class StringInt {
     private:
         string number;
@@ -20,6 +19,7 @@ class StringInt {
         StringInt(const string num);
         ~StringInt()=default;
 
+        // returns a vector of the digits of number, ex: 65535 becomes < 6, 5, 5, 3, 5 >
         vector<int> asInt() const;
         string asString() const { return isNegative ? "-" + number : number; }
 

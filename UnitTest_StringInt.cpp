@@ -1,20 +1,26 @@
 #include "UnitTest_StringInt.hpp"
 
+/// @brief check to see if result and expected have the same values
+/// @param result a StringInt that is being checked
+/// @param expected a string of the expected number
+/// @return true if result and expected are the same, false if not
 bool isEqual(const StringInt result, const string expected){
     const vector<int> resultInt = result.asInt();
     const string resultStr = result.asString();
 
-    if (resultInt.size() != expected.size()) return false;
+    if (resultInt.size() != expected.size()) return false; // if they are not the same size
 
     for (unsigned int i = 0; i < resultInt.size(); i++){
-        if (resultInt[i] != expected[i] - 48) return false;
+        if (resultInt[i] != expected[i] - 48) return false; // if their digits are not the same
     }
 
-    if (resultStr != expected) return false;
+    if (resultStr != expected) return false; // if the string does not match expected
 
-    return true;
+    return true; // otherwise true
 }
 
+/// @brief check if the default construction of StringInt yields 0
+/// @return int 0 on pass, 1 on fail 
 int UnitTest_DefaultConstruction(){
     try {
         StringInt text;
@@ -31,6 +37,8 @@ int UnitTest_DefaultConstruction(){
     return 0;
 }
 
+/// @brief check if the construction of StringInt does not fail
+/// @return int 0 on pass, 1 on fail 
 int UnitTest_CreateClass(){
     try {
         StringInt text1("1234567890");
@@ -43,6 +51,8 @@ int UnitTest_CreateClass(){
     return 0;
 }
 
+/// @brief check if asInt() works as expected
+/// @return int 0 on pass, 1 on fail 
 int UnitTest_asInt(){
     try {
         int parts[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
@@ -60,6 +70,8 @@ int UnitTest_asInt(){
     return 0;
 }
 
+/// @brief check if == works as expected
+/// @return int 0 on pass, 1 on fail 
 int UnitTest_Equivalence(){
     try {
         StringInt text1("123456789");
@@ -77,6 +89,8 @@ int UnitTest_Equivalence(){
     return 0;
 }
 
+/// @brief check if asString() works as expected
+/// @return int 0 on pass, 1 on fail 
 int UnitTest_asString(){
     try{
         StringInt text1("1234567890");
@@ -91,6 +105,8 @@ int UnitTest_asString(){
     return 0;
 }
 
+/// @brief check if operator + works in simple cases
+/// @return int 0 on pass, 1 on fail 
 int UnitTest_SimpleAdd(){
     try{
         StringInt text1("2");
@@ -108,6 +124,8 @@ int UnitTest_SimpleAdd(){
     return 0;
 }
 
+/// @brief check if operator + works with carry-overs
+/// @return int 0 on pass, 1 on fail 
 int UnitTest_CarryOverAdd(){
     try{
         StringInt text1("5");
@@ -136,6 +154,8 @@ int UnitTest_CarryOverAdd(){
     return 0;
 }
 
+/// @brief check if operator - works with in simple cases
+/// @return int 0 on pass, 1 on fail 
 int UnitTest_SimpleSub(){
     try{
         StringInt text1("2");
@@ -150,6 +170,8 @@ int UnitTest_SimpleSub(){
     return 0;
 }
 
+/// @brief check if operator - works with carry-overs
+/// @return int 0 on pass, 1 on fail 
 int UnitTest_PositiveSub(){
     try{
         StringInt text1("1000");
@@ -179,6 +201,8 @@ int UnitTest_PositiveSub(){
     return 0;
 }
 
+/// @brief check if operator > works as expected
+/// @return int 0 on pass, 1 on fail 
 int UnitTest_GreaterThan(){
     try {
         StringInt text1("100");
@@ -203,6 +227,8 @@ int UnitTest_GreaterThan(){
     return 0;
 }
 
+/// @brief check if operator < works as expected
+/// @return int 0 on pass, 1 on fail 
 int UnitTest_LessThan(){
     try {
         StringInt text1("100");
@@ -227,6 +253,8 @@ int UnitTest_LessThan(){
     return 0;
 }
 
+/// @brief run all the unit tests in the file
+/// @return int 0 
 int UnitTest_RunAll(){
     int passed = 0, failed = 0;
 
