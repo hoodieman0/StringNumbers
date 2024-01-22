@@ -26,5 +26,5 @@ UnitTest_StringInt.o: UnitTest_StringInt.cpp UnitTest_StringInt.hpp $(binariesFo
 	$(CC) -c $(CFLAGS) -o $(binariesFolder)/UnitTest_StringInt.o UnitTest_StringInt.cpp
 
 clean: 
-	rm -rf main $(binariesFolder)
+	test -n "$(binariesFolder)" && rm -rf main $(binariesFolder)
 
